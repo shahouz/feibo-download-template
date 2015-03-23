@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>零食小喵</title>
+        <meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="full-screen" content="yes"/>
+        <meta name="x5-fullscreen" content="true"/>
+        <script>
+        	var browser = {
+				versions: function () {
+					var u = navigator.userAgent, app = navigator.appVersion;
+					return { //移动终端浏览器版本信息 
+						mobile: !!u.match(/AppleWebKit.*Mobile.*/),
+						ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端 
+						android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器 
+						iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器 
+						iPad: u.indexOf('iPad') > -1, //是否iPad]
+						weixin : u.match("MicroMessenger")
+					};
+				}(),
+			};
+			if(!browser.versions.mobile){
+				//wap 和 pc 的切换
+				//window.location.href = "http://lingshi.cccwei.com/";
+			}
+        </script>
+		<style>
+			body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,input,textarea,p,blockquote,th,td,span,a{margin:0;padding:0}
+			body{
+				background:url(images/bg.jpg) #fdeecf center top no-repeat;
+				background-size:100% auto;
+			}
+			.main{
+				position:absolute;
+				left:30px;
+				right:30px;
+				top:30px;
+				bottom:30px;
+				display:block;
+				z-index:8;
+			}
+			.miao_title{
+				width:100%;
+				display:block;
+				margin-bottom:20px;
+			}
+			.miao_download{
+				display:block;
+				outline:none;
+			}
+			.miao_download img{
+				width:50%;
+				margin:0 auto;
+				display:block;
+				margin-bottom:20px;
+				outline:none;
+			}
+			.miao_phone{
+				width:100%;
+				display:block;
+			}
+			.shadow{
+				width:100%;
+				height:100%;
+				background:url(images/shadow.png) center 10px rgba(0,0,0,0.7) no-repeat;
+				background-size:90%;
+				position:fixed;
+				left:0;
+				top:0;
+				right:0;
+				bottom:0;
+				z-index:18;
+				display:none;
+			}
+			.cl{
+				clear:both;
+			}
+		/*1.30*/
+		.miao_up{
+			margin: 200px 10% 0 10%;
+			width: 80%;
+		}
+		.miao_down{
+			width: 110%;
+			margin: 30px -5%;
+		}
+		.shareicon{
+			position:absolute;
+			left:-2000px;
+			top:-2000px;
+			z-index:-9999;
+		}
+		</style>
+	</head>
+	<body>
+		<!--分享用的ico 200×200-->
+		<div class="shareicon"><img src="images/miaoIcon.png" /></div>
+		<!--半透明阴影遮罩-->
+		<div class="shadow" id="shadow"></div>
+		<div class="main">
+			<a href="javascript:;" id="download"><img src="images/p1.png" class="miao_up" /></a>
+			<a href="javascript:;" id="download_down"><img src="images/p2.png" class="miao_down" /></a>
+			<div class="cl"></div>
+			<!-- logo 
+			<img src="images/title.png" class="miao_title" />
+			<div class="cl"></div>
+			<a href="javascript:;" class="miao_download" id="download"><img src="images/download.png" /></a>
+			<div class="cl"></div>
+			<img src="images/phone.png" class="miao_phone" />
+			-->
+		</div>
+	</body>
+	<div style="display:none;">
+		统计代码
+	</div>
+	<script>
+		
+		function setType(){
+			if(browser.versions.android){
+				//android
+				_czc.push(﻿["_trackEvent","小喵-非微信-Andorid","下载按钮"]);
+				setTimeout(function(){
+					//window.location.href = "http://dl.lengxiaohua.cn/static/lingshi/lingshi-feibo.apk";
+					//安卓下载地址
+					window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.feibo.snacks&g_f=991653';
+				},200);
+			}else if(browser.versions.iPhone || browser.versions.iPad || browser.versions.ios){
+				//ios
+				_czc.push(﻿["_trackEvent","小喵-非微信-iOS","下载按钮"]);
+				setTimeout(function(){
+					//window.location.href = "https://itunes.apple.com/us/app/ling-shi-xiao-miao-pin-pai/id973356324?l=zh&ls=1&mt=8";
+					//ios下载地址
+					window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.feibo.snacks&g_f=991653';
+				},200);
+			}
+		};
+		//点击下载
+		function setDownload(){
+			//微信内做引导，需要开启这个
+			//if(browser.versions.weixin){
+			//	document.getElementById('shadow').style.display = 'block';
+			//}else{
+				setType();
+			//}
+		};
+		//进页面自动下载
+		function autoDownload(){
+
+			//if(browser.versions.weixin){
+				
+			//}else{
+				setType();
+			//}
+		}
+		function hideShadow() {
+			this.style.display = 'none';
+		}
+		
+		document.getElementById('download').onclick = setDownload;
+		document.getElementById('download_down').onclick = setDownload;
+		document.getElementById('shadow').onclick = hideShadow;
+		//进页面自动下载
+		//window.onload = autoDownload;
+	</script>
+</html>
